@@ -1,0 +1,18 @@
+{
+  "name": "pi-gacha",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A gamified coding-agent harness — gacha/idle mechanics layered over pi.",
+  "bin": {
+    "pi-gacha": "bin/pi-gacha"
+  },
+  "scripts": {
+    "pi-gacha": "bin/pi-gacha",
+    "test": "pnpm --filter pi-gacha test",
+    "typecheck": "pnpm --filter pi-gacha typecheck",
+    "pi:build": "cd vendor/pi && npm run build"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}
