@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+# pi-gacha — launch the pi-gacha coding-agent harness.
+#
+# Runs the vendored pi CLI preloaded with the pi-gacha extension and
+# DeepSeek defaults. Everything after the flags is passed straight through
+# to pi (e.g. an initial prompt, or nothing for interactive mode).
+#
+# Env overrides:
+#   FRONTLINE_MODEL   model pattern (default: deepseek/deepseek-v4-flash)
+#   DEEPSEEK_API_KEY  required for the model to actually run
+#
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PI_CLI="$ROOT/vendor/pi/packages/coding-agent/dist/cli.js"
+EXT="$ROOT/packages/pi-gacha/extensions/index.ts"
+MODEL="${FRONTLINE_MODEL:-deepseek/deepseek-v4-flash}"
+
+if [[ ! -f "$PI_CLI" ]]; then
+	echo "pi-gacha: vendored pi is not built." >&2
+	echo "  run: pnpm pi:build   (or: cd vendor/pi && npm install && npm run build)" >&2
+	exit 1
+fi
+
+exec node "$PI_CLI" --extension "$EXT" --model "$MODEL" "$@"

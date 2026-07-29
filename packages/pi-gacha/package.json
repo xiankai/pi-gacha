@@ -1,0 +1,57 @@
+{
+	"name": "pi-gacha",
+	"version": "0.1.0",
+	"private": false,
+	"type": "module",
+	"license": "MIT",
+	"description": "A gamified coding-agent layer for pi: characters, XP, gacha, idle rewards, and a live HUD.",
+	"keywords": [
+		"pi-package",
+		"pi-extension",
+		"game",
+		"gamification",
+		"gacha",
+		"characters"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xiankai/pi-gacha.git",
+		"directory": "packages/pi-gacha"
+	},
+	"homepage": "https://github.com/xiankai/pi-gacha",
+	"bugs": "https://github.com/xiankai/pi-gacha/issues",
+	"files": [
+		"extensions",
+		"src",
+		"themes",
+		"README.md",
+		"LICENSE"
+	],
+	"pi": {
+		"extensions": [
+			"./extensions/index.ts"
+		],
+		"themes": [
+			"./themes"
+		],
+		"image": "https://raw.githubusercontent.com/xiankai/pi-gacha/main/docs/pi-gacha.png"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"typecheck": "tsc --noEmit"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-ai": ">=0.74.0 <1",
+		"@earendil-works/pi-coding-agent": ">=0.74.0 <1",
+		"@earendil-works/pi-tui": ">=0.74.0 <1"
+	},
+	"devDependencies": {
+		"@types/node": "^22.19.19",
+		"typescript": "^5.9.3",
+		"vitest": "^2.1.9"
+	}
+}
