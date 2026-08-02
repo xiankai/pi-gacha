@@ -10,7 +10,6 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "types": ["node"],
-    "baseUrl": ".",
     "paths": {
       "@earendil-works/pi-coding-agent": ["../../vendor/pi/packages/coding-agent/dist/index.d.ts"],
       "@earendil-works/pi-tui": ["../../vendor/pi/packages/tui/dist/index.d.ts"],
