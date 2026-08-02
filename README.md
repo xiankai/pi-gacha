@@ -27,14 +27,34 @@ gacha pull, live HUD, idle accrual, and persistence.
 
 ## Setup
 
+Fresh clone? Run the setup script — it fetches the pi submodule, builds it, and
+installs dev deps:
+
 ```bash
-git submodule update --init                 # fetch vendored pi
-pnpm pi:build                               # build pi (npm, inside vendor/pi)
-pnpm install                                # pi-gacha dev deps (vitest, ts)
+./setup.sh                                  # or: pnpm run setup
 export DEEPSEEK_API_KEY=sk-...              # required to actually run the model
 ./bin/pi-gacha                             # launch (interactive)
 ./bin/pi-gacha "add a hello() to main.ts"  # or with an initial task
 ```
+
+Prerequisites: `git`, plus `node` and `pnpm` at the versions pinned in
+[`.tool-versions`](.tool-versions) (node 24). With [mise](https://mise.jdx.dev)
+or [asdf](https://asdf-vm.com): `mise install` (or `asdf install`) sets both up.
+
+<details>
+<summary>What the script does (to run the steps by hand)</summary>
+
+```bash
+git submodule update --init                 # fetch vendored pi
+pnpm pi:build                               # cd vendor/pi && npm install && npm run build
+pnpm install                                # pi-gacha dev deps (vitest, ts)
+```
+
+The one step a fresh clone usually misses: **pi is a separate monorepo with its
+own toolchain** and must have its deps installed (`npm install` inside
+`vendor/pi`) before it can build — otherwise the build fails with
+`tsgo: command not found`. `pnpm pi:build` now does this for you.
+</details>
 
 Override the model with `FRONTLINE_MODEL` (default `deepseek/deepseek-v4-flash`).
 
