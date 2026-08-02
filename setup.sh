@@ -59,9 +59,10 @@ say "Setup complete."
 cat <<'EOF'
 
 Next steps:
-  export DEEPSEEK_API_KEY=sk-...              # required to run the model
-  ./bin/pi-gacha                              # launch (interactive)
-  ./bin/pi-gacha "add a hello() to main.ts"   # or with an initial task
+  ./bin/pi-gacha [task]        # launches pi + the game; pick a model with /model
+                               # (pi remembers it) or pass --model provider/id
+  # Provide the provider's key the way pi expects (e.g. export DEEPSEEK_API_KEY,
+  # or /login). See the README's "Model / provider" section.
 
 Dev:
   pnpm test        # vitest over packages/pi-gacha

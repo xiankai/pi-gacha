@@ -38,7 +38,9 @@ shipped as a **pi package**. Read `.claude/plans/*.md` for the full design.
 
 - `pnpm test` / `pnpm typecheck` — game core.
 - `pnpm pi:build` — (re)build vendored pi.
-- `./bin/pi-gacha [prompt]` — run the harness (needs `DEEPSEEK_API_KEY`).
+- `./bin/pi-gacha [prompt]` — run the harness (vendored pi + the game extension).
+  Pick a model via `--model provider/id` or `/model`; provide the provider key
+  the way pi expects (e.g. `DEEPSEEK_API_KEY`, or `/login`).
 
 ## Gotchas
 

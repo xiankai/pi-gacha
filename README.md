@@ -31,10 +31,9 @@ Fresh clone? Run the setup script — it fetches the pi submodule, builds it, an
 installs dev deps:
 
 ```bash
-./setup.sh                                  # or: pnpm run setup
-export DEEPSEEK_API_KEY=sk-...              # required to actually run the model
-./bin/pi-gacha                             # launch (interactive)
-./bin/pi-gacha "add a hello() to main.ts"  # or with an initial task
+./setup.sh                                          # or: pnpm run setup
+./bin/pi-gacha --model deepseek/deepseek-v4-flash   # launch (see Model / provider)
+./bin/pi-gacha "add a hello() to main.ts"           # or with an initial task
 ```
 
 Prerequisites: `git`, plus `node` and `pnpm` at the versions pinned in
@@ -56,7 +55,20 @@ own toolchain** and must have its deps installed (`npm install` inside
 `tsgo: command not found`. `pnpm pi:build` now does this for you.
 </details>
 
-Override the model with `FRONTLINE_MODEL` (default `deepseek/deepseek-v4-flash`).
+## Model / provider
+
+pi-gacha assumes nothing about your model or provider — that's pi's domain.
+`./bin/pi-gacha` just launches pi with the game extension and passes your
+arguments through. Choose a model with `--model provider/id` or the interactive
+`/model` picker (pi remembers your default), and supply the provider's key the
+way pi expects (`export DEEPSEEK_API_KEY=…`, `--api-key`, or `/login`).
+
+- **Built-in providers** (`deepseek`, `openai`, `anthropic`, …) work by name,
+  no setup: `./bin/pi-gacha --model deepseek/deepseek-v4-flash`.
+- **Local / other servers** come from pi, not pi-gacha — either an installed
+  package (`pi install npm:pi-lmstudio` → `--model lmstudio/<id>`) or a
+  `~/.pi/agent/models.json` entry for any OpenAI-compatible endpoint (Ollama,
+  vLLM, LM Studio, proxies). See pi's model docs.
 
 ## Develop
 
