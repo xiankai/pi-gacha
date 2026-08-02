@@ -8,11 +8,10 @@
   },
   "scripts": {
     "pi-gacha": "bin/pi-gacha",
+    "setup": "./setup.sh",
     "test": "pnpm --filter pi-gacha test",
     "typecheck": "pnpm --filter pi-gacha typecheck",
-    "pi:build": "cd vendor/pi && npm run build"
-  },
-  "engines": {
-    "node": ">=22.19.0"
+    "pi:install": "cd vendor/pi && npm install",
+    "pi:build": "cd vendor/pi && npm install && npm run build"
   }
 }
